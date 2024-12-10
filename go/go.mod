@@ -1,4 +1,4 @@
-module maclt/grpc-example
+module maclt/sample-grpc
 
 go 1.23.3
 

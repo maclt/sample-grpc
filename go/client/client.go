@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	pb "maclt/grpc-example/location"
+	pb "maclt/sample-grpc/location"
 )
 
 func main() {

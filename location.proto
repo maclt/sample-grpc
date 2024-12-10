@@ -5,7 +5,7 @@ syntax = "proto3";
 package location;
 
 // Golang specific, specifying Go package paths and names
-option go_package = "maclt/grpc-example/location/location";
+option go_package = "maclt/sample-grpc/location/location";
 
 
 // Define RPC

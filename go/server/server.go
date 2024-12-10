@@ -8,7 +8,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	pb "maclt/grpc-example/location"
+	pb "maclt/sample-grpc/location"
 )
 
 // Server struct implements the RouteGuideServer interface
