@@ -1,0 +1,26 @@
+// latest version of Protobuf
+syntax = "proto3";
+
+// Protobuf namespaces
+package location;
+
+// Golang specific, specifying Go package paths and names
+option go_package = "maclt/grpc-example/location/location";
+
+
+// Define RPC
+service RouteGuide {
+  // return a Feature at a given Point
+  rpc GetFeature(Point) returns (Feature) {}
+}
+
+// define the type of message interface
+message Point {
+  float lat = 1;
+  float lng = 2;
+}
+
+message Feature {
+  string name = 1;
+  string country = 2;
+}
