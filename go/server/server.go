@@ -12,12 +12,12 @@ import (
 )
 
 // Server struct implements the LocationServer interface
-type routeGuideServer struct {
+type locationServer struct {
 	pb.UnimplementedLocationServer
 }
 
 // Implement GetFeature RPC
-func (s *routeGuideServer) GetFeature(ctx context.Context, point *pb.Point) (*pb.Feature, error) {
+func (s *locationServer) GetFeature(ctx context.Context, point *pb.Point) (*pb.Feature, error) {
 	log.Printf("Received request for Point: %v, %v", point.Lat, point.Lng)
 	return &pb.Feature{Name: "Tokyo Tower", Country: "Japan"}, nil
 }
@@ -29,10 +29,10 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	// Register the RouteGuide server
+	// Register the location server
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
-	pb.RegisterLocationServer(grpcServer, &routeGuideServer{})
+	pb.RegisterLocationServer(grpcServer, &locationServer{})
 	log.Println("gRPC server listening on port 50051")
 
 	// Serve gRPC server
