@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0elocation.proto\x12\x08location\"!\n\x05Point\x12\x0b\n\x03lat\x18\x01 \x01(\x02\x12\x0b\n\x03lng\x18\x02 \x01(\x02\"(\n\x07\x46\x65\x61ture\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x02 \x01(\t2@\n\nRouteGuide\x12\x32\n\nGetFeature\x12\x0f.location.Point\x1a\x11.location.Feature\"\x00\x42%Z#maclt/sample-grpc/location/locationb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0elocation.proto\x12\x08location\"!\n\x05Point\x12\x0b\n\x03lat\x18\x01 \x01(\x02\x12\x0b\n\x03lng\x18\x02 \x01(\x02\"(\n\x07\x46\x65\x61ture\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x02 \x01(\t2>\n\x08Location\x12\x32\n\nGetFeature\x12\x0f.location.Point\x1a\x11.location.Feature\"\x00\x42%Z#maclt/sample-grpc/location/locationb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,6 +36,6 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_POINT']._serialized_end=61
   _globals['_FEATURE']._serialized_start=63
   _globals['_FEATURE']._serialized_end=103
-  _globals['_ROUTEGUIDE']._serialized_start=105
-  _globals['_ROUTEGUIDE']._serialized_end=169
+  _globals['_LOCATION']._serialized_start=105
+  _globals['_LOCATION']._serialized_end=167
 # @@protoc_insertion_point(module_scope)

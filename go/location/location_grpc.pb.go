@@ -23,107 +23,107 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RouteGuide_GetFeature_FullMethodName = "/location.RouteGuide/GetFeature"
+	Location_GetFeature_FullMethodName = "/location.Location/GetFeature"
 )
 
-// RouteGuideClient is the client API for RouteGuide service.
+// LocationClient is the client API for Location service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
 // Define RPC
-type RouteGuideClient interface {
+type LocationClient interface {
 	// return a Feature at a given Point
 	GetFeature(ctx context.Context, in *Point, opts ...grpc.CallOption) (*Feature, error)
 }
 
-type routeGuideClient struct {
+type locationClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewRouteGuideClient(cc grpc.ClientConnInterface) RouteGuideClient {
-	return &routeGuideClient{cc}
+func NewLocationClient(cc grpc.ClientConnInterface) LocationClient {
+	return &locationClient{cc}
 }
 
-func (c *routeGuideClient) GetFeature(ctx context.Context, in *Point, opts ...grpc.CallOption) (*Feature, error) {
+func (c *locationClient) GetFeature(ctx context.Context, in *Point, opts ...grpc.CallOption) (*Feature, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Feature)
-	err := c.cc.Invoke(ctx, RouteGuide_GetFeature_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Location_GetFeature_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// RouteGuideServer is the server API for RouteGuide service.
-// All implementations must embed UnimplementedRouteGuideServer
+// LocationServer is the server API for Location service.
+// All implementations must embed UnimplementedLocationServer
 // for forward compatibility.
 //
 // Define RPC
-type RouteGuideServer interface {
+type LocationServer interface {
 	// return a Feature at a given Point
 	GetFeature(context.Context, *Point) (*Feature, error)
-	mustEmbedUnimplementedRouteGuideServer()
+	mustEmbedUnimplementedLocationServer()
 }
 
-// UnimplementedRouteGuideServer must be embedded to have
+// UnimplementedLocationServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedRouteGuideServer struct{}
+type UnimplementedLocationServer struct{}
 
-func (UnimplementedRouteGuideServer) GetFeature(context.Context, *Point) (*Feature, error) {
+func (UnimplementedLocationServer) GetFeature(context.Context, *Point) (*Feature, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFeature not implemented")
 }
-func (UnimplementedRouteGuideServer) mustEmbedUnimplementedRouteGuideServer() {}
-func (UnimplementedRouteGuideServer) testEmbeddedByValue()                    {}
+func (UnimplementedLocationServer) mustEmbedUnimplementedLocationServer() {}
+func (UnimplementedLocationServer) testEmbeddedByValue()                  {}
 
-// UnsafeRouteGuideServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to RouteGuideServer will
+// UnsafeLocationServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to LocationServer will
 // result in compilation errors.
-type UnsafeRouteGuideServer interface {
-	mustEmbedUnimplementedRouteGuideServer()
+type UnsafeLocationServer interface {
+	mustEmbedUnimplementedLocationServer()
 }
 
-func RegisterRouteGuideServer(s grpc.ServiceRegistrar, srv RouteGuideServer) {
-	// If the following call pancis, it indicates UnimplementedRouteGuideServer was
+func RegisterLocationServer(s grpc.ServiceRegistrar, srv LocationServer) {
+	// If the following call pancis, it indicates UnimplementedLocationServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&RouteGuide_ServiceDesc, srv)
+	s.RegisterService(&Location_ServiceDesc, srv)
 }
 
-func _RouteGuide_GetFeature_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Location_GetFeature_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Point)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RouteGuideServer).GetFeature(ctx, in)
+		return srv.(LocationServer).GetFeature(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RouteGuide_GetFeature_FullMethodName,
+		FullMethod: Location_GetFeature_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RouteGuideServer).GetFeature(ctx, req.(*Point))
+		return srv.(LocationServer).GetFeature(ctx, req.(*Point))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// RouteGuide_ServiceDesc is the grpc.ServiceDesc for RouteGuide service.
+// Location_ServiceDesc is the grpc.ServiceDesc for Location service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var RouteGuide_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "location.RouteGuide",
-	HandlerType: (*RouteGuideServer)(nil),
+var Location_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "location.Location",
+	HandlerType: (*LocationServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetFeature",
-			Handler:    _RouteGuide_GetFeature_Handler,
+			Handler:    _Location_GetFeature_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

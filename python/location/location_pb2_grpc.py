@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class RouteGuideStub(object):
+class LocationStub(object):
     """Define RPC
     """
 
@@ -36,13 +36,13 @@ class RouteGuideStub(object):
             channel: A grpc.Channel.
         """
         self.GetFeature = channel.unary_unary(
-                '/location.RouteGuide/GetFeature',
+                '/location.Location/GetFeature',
                 request_serializer=location__pb2.Point.SerializeToString,
                 response_deserializer=location__pb2.Feature.FromString,
                 _registered_method=True)
 
 
-class RouteGuideServicer(object):
+class LocationServicer(object):
     """Define RPC
     """
 
@@ -54,7 +54,7 @@ class RouteGuideServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_RouteGuideServicer_to_server(servicer, server):
+def add_LocationServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetFeature': grpc.unary_unary_rpc_method_handler(
                     servicer.GetFeature,
@@ -63,13 +63,13 @@ def add_RouteGuideServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'location.RouteGuide', rpc_method_handlers)
+            'location.Location', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('location.RouteGuide', rpc_method_handlers)
+    server.add_registered_method_handlers('location.Location', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class RouteGuide(object):
+class Location(object):
     """Define RPC
     """
 
@@ -87,7 +87,7 @@ class RouteGuide(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/location.RouteGuide/GetFeature',
+            '/location.Location/GetFeature',
             location__pb2.Point.SerializeToString,
             location__pb2.Feature.FromString,
             options,

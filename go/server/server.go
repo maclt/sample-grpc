@@ -11,9 +11,9 @@ import (
 	pb "maclt/sample-grpc/location"
 )
 
-// Server struct implements the RouteGuideServer interface
+// Server struct implements the LocationServer interface
 type routeGuideServer struct {
-	pb.UnimplementedRouteGuideServer
+	pb.UnimplementedLocationServer
 }
 
 // Implement GetFeature RPC
@@ -32,7 +32,7 @@ func main() {
 	// Register the RouteGuide server
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
-	pb.RegisterRouteGuideServer(grpcServer, &routeGuideServer{})
+	pb.RegisterLocationServer(grpcServer, &routeGuideServer{})
 	log.Println("gRPC server listening on port 50051")
 
 	// Serve gRPC server

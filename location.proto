@@ -9,7 +9,7 @@ option go_package = "maclt/sample-grpc/location/location";
 
 
 // Define RPC
-service RouteGuide {
+service Location {
   // return a Feature at a given Point
   rpc GetFeature(Point) returns (Feature) {}
 }

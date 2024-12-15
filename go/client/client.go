@@ -20,7 +20,7 @@ func main() {
 	defer conn.Close()
 
 	// Create a client for the RouteGuide service
-	client := pb.NewRouteGuideClient(conn)
+	client := pb.NewLocationClient(conn)
 
 	// Call the GetFeature method
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)

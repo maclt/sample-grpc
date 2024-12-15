@@ -27,7 +27,7 @@ def run():
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
     with grpc.insecure_channel("localhost:50051") as channel:
-        stub = location_pb2_grpc.RouteGuideStub(channel)
+        stub = location_pb2_grpc.LocationStub(channel)
         print("-------------- GetFeature --------------")
         get_one_feature(stub)
 
